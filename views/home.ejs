@@ -1,0 +1,60 @@
+<%- include('header1.ejs') %>
+
+<div>
+    <form action="/tweet_submit" method="post" enctype="multipart/form-data">
+        <textarea id="tweet" placeholder="Say something" name="tweet" style="width:400px; height:200px; margin-left:20px;"></textarea>
+        <br>
+        
+        <input type="file" id="tweet_img" name="tweet_img"  />
+        <input type="submit" value="tweet"/>
+    </form>
+</div>
+
+<div style="margin:0 25px;height:auto;min-height:250px">
+    <% if (result && Array.isArray(result)&& result.length > 0) { %>
+        <% for(var i=0; i<result.length; i++) { %>
+            <div class="tweet_wrap">
+                <br/>
+                <div class="tun"><img src="/image/user.jpg" id="icon" width="20" height="20"/><%= result[i].username %></div>
+                <div class="ttime">
+                    <% 
+        const datetime = new Date(result[i].datetime); 
+        const formattedDate = datetime.toLocaleDateString();
+        const formattedTime = datetime.toLocaleTimeString(); 
+    %><%= formattedDate %> <%= formattedTime %></div>
+                <div class="tweet_data"><%= result[i].content %></div>
+                <br/>
+                <% if(result[i].type!=""){
+                    if(result[i].type==="image/jpeg" ||result[i].type==="image/jpg" ||result[i].type==="image/png" ||result[i].type==="image/gif"){
+                        %>
+                <img style="height: 300px; width: 300px;" src="uploads/<%=result[i].img_vdo_name%>"/>
+                <%}
+                <!-- end of if mimetype image -->
+                else{
+                    %>
+                    <video style="height: 400px; width: 400px; " controls autoplay>
+                        <source src="uploads/<%=result[i].img_vdo_name%>" type="<%=result[i].type%>" />
+                    </video>
+                    <%
+                }
+                <!-- end of video -->
+            }%><!-- end of outter if -->
+            </div>
+        <% } %>
+    <% } else { %>
+        <p>No tweets found.</p>
+    <% } %>
+    <br/>
+</div>
+<br/>
+
+</div>
+</div>
+</body>
+</html>
+
+<script>
+    $(document).ready(function(){
+        $("#icon").click($("#tweet_img").trigger('open'));
+    });
+</script>

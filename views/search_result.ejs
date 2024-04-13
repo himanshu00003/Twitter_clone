@@ -1,0 +1,18 @@
+<%- include ('header1.ejs') %>
+
+<h3>Search Result</h3>
+ 
+<div>
+    <% for(var i=0;i<result.length;i++) { %>
+        <div>
+            <p>
+           <%=result[i].username %>
+            </p>
+
+            <div><%=result[i].about %> | <a href="/follow/<%=result[i].uid%>">Follow</a></div>
+
+        </div>
+    <% } %>
+</div>
+</div>
+</div>

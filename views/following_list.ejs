@@ -1,0 +1,13 @@
+<%- include ('header1.ejs') %>
+
+<h3>List of user you are following</h3>
+ 
+<div>
+    <% for(var i=0;i<result.length;i++) { %>
+        <div>
+           <%=result[i].username %>
+        </div>
+    <% } %>
+</div>
+</div>
+</div>

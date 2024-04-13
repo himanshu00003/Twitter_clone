@@ -1,0 +1,117 @@
+<html>
+    <style>
+        ul li a{
+            
+            text-decoration: none;
+        }
+        ul li {
+            list-style: none;
+            
+        }
+        
+    </style>
+    <body>
+        <div style="width: 1000px;margin: 0 auto;">
+            
+            
+            <div style="width: 1000px;margin: 0 auto;background-color: blue;color: white;font-size: 30px;clear: both;font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;padding-left: 10px;">Profile</div>
+            
+           <% if ( result[0].header_img != null) { %>
+            <img src="banner_images/<%=result[0].header_img%>" style="width: 1000px; height: 230px; border: 3px solid white; margin: 10px;"/>
+            <%}%>
+            <% if ( result[0].profilepic != null) { %>
+                <img src="profile_images/<%=result[0].profilepic%>" style="width: 100px; height: 100px;border-radius: 50px; border: 3px solid white; margin: 10px;margin-top: -70px;"/>
+            <%}%>
+            <h3>Hey, <%=result[0].username %></h3>
+            <h4><%=result[0].about %></h4>
+            <div style="width: 1000px;border: 2px solid blue;">
+                <div style="width:300px;min-height: 500px;border: 1px solid red;float: left;">
+                    <ul>
+                        <li><a href="/home">Home</a></li>
+                        <li><a href="/uprofile">Profile</a></li>
+                        <li><a href="/followers">Followers</a></li>
+                        <li><a href="/following">Followings</a></li>
+                        <li><a href="/logout">Logout</a></li>
+                    </ul>
+                </div>
+                <div style="width: 600px;border: 1px solid green;float: left;height: auto;">
+                    <div style="width: 600px;border: 1px dashed green;float: left;height: auto;">
+                        <div style="margin: auto 70px;">
+                            <br/>
+                            <form action="/pic_submit" method="post" enctype="multipart/form-data">
+                                <center><h3>Profile Image</h3></center>
+                                <input type="file" name="pic_img" id="pic_img"/>
+                                <input type="submit" value="Save"/>
+                            </form>
+                        </div>
+                        <div style="margin: auto 70px;">
+                            <br/>
+                            <form action="/banner_submit" method="post" enctype="multipart/form-data">
+                                <center><h3>Banner Image</h3></center>
+                                <input type="file" name="banner_img" id="banner_img"/>
+                                <input type="submit" value="Save"/>
+                            </form>
+                            <br/>
+                        </div>
+                    </div>
+                    <div style="width: 600px;border: 1px dashed green;float: left;height: auto;">
+                        <form action="/profile_submit" method="post">
+                            <center><h3>Profile Info</h3></center>
+                            <div style="margin: auto 70px;">
+                            
+                                <div>
+                                    <label>First Name &emsp; :  </label>
+                                    <input type="text" name="fname" value="<%=result[0].fname%>" />
+        
+                                </div>
+                                <div>
+                                    <label>Middle Name : </label>
+                                    <input type="text" name="mname" value="<%=result[0].mname%>" />
+                                    
+                                </div>
+                                <div>
+                                    <label>Last Name&emsp; : </label>
+                                    <input type="text" name="lname" value="<%=result[0].lname%>" />
+                                    
+                                </div>
+                                <div>
+                                    <label>Tell other About You</label>
+                                    <textarea id="about" placeholder="Write about yourself!" name="about_user" style="width: 400px;height: 200px;" value="<%=result[0].about%>"></textarea>
+                                    
+                                    
+                                </div>
+                                <div>
+                                    <label>Change UserName : </label>
+                                    <input type="text" name="username" value="<%=result[0].username%>" />
+                                </div>
+                                <input type="submit" value="Update" />
+                            </div>
+                        </form>
+                    </div>  
+                    <div style="width: 600px;border: 1px dashed green;float: right;height: auto;">
+                        <div>
+                            <form action="/password_submit" method="post">
+                                <center><h3>Change Password</h3></center>
+                                <div style="margin: auto 70px;">
+                                    <div>
+                                        <label>Current Password &emsp;&emsp; :</label>
+                                        <input type="password" name="current_password" />
+                                    </div>
+                                    <div>
+                                        <label>New Password &emsp;&emsp;&emsp;&ensp;:</label>
+                                        <input type="password" name="new_password" />
+                                    </div>
+                                    <div>
+                                        <label>Confirm New Password : </label>
+                                        <input type="password" name="confirm_password" />
+                                    </div>
+                                    <input type="submit" value="Change Password" />
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>
